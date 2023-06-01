@@ -1,0 +1,390 @@
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="Style/style.css">
+
+  <script src="https://kit.fontawesome.com/5fd83b36d7.js" crossorigin="anonymous"></script>
+
+  <script src="Script/experiment_page.js" defer></script>
+
+  <script src="Script/objects/Experiment.js" defer></script>
+  <script src="Script/objects/Dataset.js" defer></script>
+  <script src="Script/objects/Subset.js" defer></script>
+  <script src="Script/objects/Model.js" defer></script>
+  <script src="Script/objects/CorrelationModel.js" defer></script>
+  <script src="Script/objects/KBestModel.js" defer></script>
+  <script src="Script/objects/HyperParamModel.js" defer></script>
+  <script src="Script/objects/Configuration.js" defer></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> defer</script>
+</head>
+
+<body>
+  <div id="popup-container">
+    <div id="popup-content">
+
+    </div>
+</div>
+<!-- Nav element to navigate to either new experiment/Current -->
+
+<!-- logo picture of the page -->
+<div href="/ML-Website/index.html">
+    <img class="logo cursor ml-100" src="images/logo.png">
+
+</div>
+
+<nav class="ml-100">
+    <a href="/ML-Website/index.html" class="btn-nav btn-nav-right">
+        <i class="fa-solid fa-flask"></i>
+        My Experiments
+    </a>
+
+    <a href="/ML-Website/experiment.html" class="btn-nav btn-nav-mid">
+        <i class="fa fa-plus"></i>
+        New Experiment
+    </a>
+    <a href="/ML-Website/upload.html" class="btn-nav btn-nav-mid">
+      <i class="fa fa-upload"></i>
+      Upload Dataset
+  </a>
+  <a href="/ML-Website/resources.html" class="btn-nav btn-nav-left">
+      <i class="fa fa-folder-open"></i>
+      My Resources
+  </a>
+    <img id="loading" class="loadingimg" src="images/loading.gif" />
+
+</nav>
+
+  <div class="step_explanation_label">
+    Specify the experiment's parameters
+  </div>
+
+  <div class="tab" id="tab">
+    <button id="ExperimentTab" class="tablinks" onclick="openConfig('Experiment')">Experiment</button>
+    <button id="DatasetTab" class="tablinks" onclick="openConfig('Dataset')">Dataset</button>
+    <button id="FeaturesTab" class="tablinks" onclick="openConfig('Features')">Features</button>
+    <button id="PreprocessingTab" class="tablinks" onclick="openConfig('Preprocessing')">Preprocessing</button>
+    <button id="ModelTab" class="tablinks" onclick="openConfig('Model')">Model</button>
+  </div>
+
+
+  <div id="Experiment" class="tabcontent">
+
+    <div class="form-group">
+      <div>
+        <label class="lead text-muted">
+          Select a Name, dataset and type of experiment.
+        </label>
+
+      </div>
+
+      <label class="lead mr-3 my-label">
+        Name
+      </label>
+
+      <input type="text" placeholder="New experiment" autofocus="autofocus" class="form-control new_exp_input_name"
+        id="exp_name">
+    </div>
+
+    <div>
+      <label class="lead mr-3 my-label">
+        Dataset
+      </label>
+      <select class="form-control form-control-sm mr-2 d-inline-block" id="datasetDropDown" onchange="datasetChange()">
+
+        <option value="dataset" disabled="disabled">
+          dataset
+        </option>
+      </select>
+    </div>
+    <label class="lead mr-3 my-label">
+      Mode
+    </label>
+    <select class="form-control form-control-sm mr-2 d-inline-block" id="dropDownMenu" onchange="dropDownChange()">
+      <option value="all" disabled="disabled">
+        Mode
+      </option>
+      <!---->
+      <option value="Model Training" selected>
+        Model Training
+      </option>
+      <option value="Constant Features Selection">
+        Constant Features Selection
+      </option>
+      <option value="Correlated Features Selection">
+        Correlated Features Selection
+      </option>
+      <option value="K-best Features Selection">
+        K-best Features Selection
+      </option>
+      <option value="Hyperparameters Tuning">
+        Hyperparameters Tuning
+      </option>
+    </select>
+
+    <button class="btn btn-next" onclick="experimentNext()">
+      <span>Next</span>
+      <i class="fa-solid fa-square-caret-right" style="font-size: 20;"></i>
+
+    </button>
+  </div>
+
+  <div id="Model" class="tabcontent">
+    <label id="models_label" class="lead text-muted">
+      <!-- dynamically loaded content -->
+    </label>
+
+    <div class="d-md-flex">
+      <select class="form-control form-control-sm mr-2" id="algorithmDropDown">
+        <!-- dynamically loaded content -->
+      </select>
+      <select class="form-control form-control-sm mr-2" id="kfoldDropDown">
+        <!-- dynamically loaded content -->
+      </select>
+
+      <href class="btn btn-add-to-exp" onclick="addToExperiment()">
+        <i aria-hidden="true" class="fa fa-plus">
+        </i>
+        Add to experiment
+      </href>
+
+    </div>
+
+    <div class="card-body" id="models_platform">
+      <label class="" id="models_cnt">
+        0 models selected:
+        <a class='cursor' onclick="clearAllModels()">
+          clear all
+        </a>
+      </label>
+    </div>
+
+  </div>
+
+
+
+  <div id="Preprocessing" class="tabcontent">
+
+    <label class="lead text-muted">
+      Select the preprocessing parameters.
+    </label>
+
+    <div class="preproc_container" onchange="optionClicked()">
+      <div class="item">
+        <div class="checkbox-rect">
+          <input type="checkbox" id="preprocessing_0" name="check" checked="checked">
+          <label for="preprocessing_0" class="feat_label">Convert negative values to 0</label>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="checkbox-rect">
+          <input type="checkbox" id="preprocessing_1" name="check" checked="checked">
+          <label for="preprocessing_1" class="feat_label">Remove samples containing null values</label>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="checkbox-rect">
+          <input type="checkbox" id="preprocessing_2" name="check" checked="checked">
+          <label for="preprocessing_2" class="feat_label">Scale numerical data to the [0, 1] standard scale.</label>
+        </div>
+      </div>
+
+    </div>
+
+    <button id = "exp_next" class="btn btn-next" onclick="preprocessingNext()">
+      <span>Next</span>
+      <i class="fa-solid fa-square-caret-right" style="font-size: 20;"></i>
+
+    </button>
+  </div>
+
+  <div id="Features" class="tabcontent">
+
+    <label class="lead text-muted">
+      Select the feature subsets.
+    </label><br>
+
+
+
+    <span class="left_from_clipboard">
+      <label class="" id="features_selected">
+        0 features selected:&nbsp
+      </label>
+      <a class="cursor" onclick="clearAllFeatures()">
+        clear all
+      </a>
+      <label>
+        &nbsp&nbsp&nbsp&nbsp&nbsp
+      </label>
+      <a class="cursor" onclick="selectAllFeatures()">
+        select all
+      </a>
+    </span>
+    <br>
+
+    <href id="addExp" class="btn btn-add-to-exp" style="margin-top: 10px;margin-bottom: 1px;"
+      onclick="addFeaturesToSubset()">
+
+      <i aria-hidden="true" class="fa fa-plus"></i>
+      Add to experiment
+    </href>
+
+    <span>
+      <href class="util-btn btn-clipboard" onclick="copySelection()" style="font-size: 18px;">
+
+        <span class='tag-func tooltip feat_utils'>
+          <span class='tooltiptext'>
+            Copy selected features to clipboard
+          </span>
+
+          <i aria-hidden="true" class="fa fa-copy">
+          </i>
+
+        </span>
+
+      </href>
+
+      <href class="util-btn btn-clipboard" onclick="pasteSelection()">
+
+        <span class='tag-func tooltip feat_utils'>
+          <span class='tooltiptext'>
+            Paste clipboard features
+          </span>
+          <i aria-hidden="true" class="fa fa-paste">
+          </i>
+        </span>
+
+      </href>
+
+      <href class="util-btn btn-clipboard" onclick="selectClipboard()">
+
+        <span class='tag-func tooltip feat_utils'>
+          <span class='tooltiptext'>
+            Select clipboard features without affecting the rest of the features
+          </span>
+
+          <i class="fa-solid fa-square-check"></i>
+        </span>
+      </href>
+
+      <href class="util-btn btn-clipboard" onclick="unselectClipboard()">
+
+        <span class='tag-func tooltip feat_utils'>
+          <span class='tooltiptext'>
+            Unselect clipboard features without affecting the rest of the features
+          </span>
+
+          <i class="fa-solid fa-square-xmark" style="vertical-align: middle;"></i>
+
+        </span>
+      </href>
+    </span>
+
+    <div class="">
+      <div class="feat_container" id=features_platform>
+      </div>
+    </div>
+
+    <br>
+    <div id="subsets_platform" class="card-body">
+      <label id="subsets_cnt">
+        0 subsets selected:
+        <a class='cursor' onclick='clearAllSubsets()'>
+          clear all
+        </a>
+      </label>
+    </div>
+
+    <button class="btn btn-next" onclick="featuresNext()">
+      <span>Next</span>
+      <i class="fa-solid fa-square-caret-right" style="font-size: 20;"></i>
+
+    </button>
+
+  </div>
+
+  <div id="Dataset" class="tabcontent">
+
+    <div id="list-byprop">
+      <label class="lead text-muted">
+        Select target class and quantity.
+      </label>
+
+      <div class="d-md-flex">
+
+        <input type="text" autofocus="autofocus" disabled="disabled"
+          class="form-control form-control-sm mr-2 d-inline-block" id="datasetName_field">
+
+        <select class="form-control form-control-sm mr-2 d-inline-block" id="targetclassDropDown">
+          <option value="all" disabled="disabled">
+            Target class
+          </option>
+        </select>
+
+        <select class="max_width_qty form-control form-control-sm mr-2 d-inline-block" id="qtyDropDown">
+          <option value="all" disabled="disabled">
+            Qty (default if unset = 0)
+          </option>
+          <option value="1000">
+            1000
+          </option>
+          <option value="5000">
+            5000
+          </option>
+          <option value="10000">
+            10000
+          </option>
+          <option value="50000">
+            50000
+          </option>
+          <option value="100000">
+            100000
+          </option>
+          <option value="500000">
+            500000
+          </option>
+          <option value="1000000">
+            1000000
+          </option>
+          <option value="all">
+            all
+          </option>
+        </select>
+        <href class="btn btn-add-to-exp" onclick="addConfigurationToExperiment()">
+          <i aria-hidden="true" class="fa fa-plus">
+          </i>
+          Add to experiment
+        </href>
+      </div>
+
+      <div class="card-body font-size-sm" id="configurations_platform">
+        <label id="configurations_cnt">
+          0 configurations selected:
+          <a class="cursor" onclick='clearAllExperiments()'>
+            clear all
+          </a>
+        </label>
+
+      </div>
+
+    </div>
+
+    <!-- Opening the experiment as the first tab -->
+
+    <button class="btn btn-next" onclick="datasetNext()">
+      <span>Next</span>
+      <i class="fa-solid fa-square-caret-right" style="font-size: 20;"></i>
+
+    </button>
+  </div>
+
+  <input type="submit" class="btn btn-submit" value="Submit experiment" onclick="submitExperiment()">
+  <input type="submit" class="btn btn-save" value="Save draft" onclick="saveDraftExperiment()">
+
+</body>
+
+</html>

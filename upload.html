@@ -1,0 +1,136 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="Style/style.css">
+
+    <script src="https://kit.fontawesome.com/5fd83b36d7.js" crossorigin="anonymous"></script>
+
+    <script src="Script/upload_page.js" defer></script>
+
+    <script src="Script/objects/Experiment.js" defer></script>
+    <script src="Script/objects/Dataset.js" defer></script>
+    <script src="Script/objects/Subset.js" defer></script>
+    <script src="Script/objects/Model.js" defer></script>
+    <script src="Script/objects/CorrelationModel.js" defer></script>
+    <script src="Script/objects/KBestModel.js" defer></script>
+    <script src="Script/objects/HyperParamModel.js" defer></script>
+    <script src="Script/objects/Configuration.js" defer></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> defer</script>
+</head>
+
+<body>
+    <div id="popup-container">
+        <div id="popup-content">
+
+        </div>
+    </div>
+
+    <div id="upload-popup-container">
+        <div id="buttons">
+            <button id="cancel-btn">Cancel</button>
+        </div>
+        <div id="file-list"></div>
+    </div>
+
+    <!-- Nav element to navigate to either new experiment/Current -->
+
+    <!-- logo picture of the page -->
+    <div href="/ML-Website/index.html">
+        <img class="logo cursor ml-100" src="images/logo.png">
+
+    </div>
+
+    <nav class="ml-100">
+        <a href="/ML-Website/index.html" class="btn-nav btn-nav-right">
+            <i class="fa-solid fa-flask"></i>
+            My Experiments
+        </a>
+
+        <a href="/ML-Website/experiment.html" class="btn-nav btn-nav-mid">
+            <i class="fa fa-plus"></i>
+            New Experiment
+        </a>
+        <a href="/ML-Website/upload.html" class="btn-nav btn-nav-mid">
+            <i class="fa fa-upload"></i>
+            Upload Dataset
+        </a>
+        <a href="/ML-Website/resources.html" class="btn-nav btn-nav-left">
+            <i class="fa fa-folder-open"></i>
+            My Resources
+        </a>
+        <img id="loading" class="loadingimg" src="images/loading.gif" />
+
+    </nav>
+
+    <div class="step_explanation_label">
+        Specify the new dataset parameters
+    </div>
+
+    <div id="Dataset" class="tabcontent" style="display: block;">
+
+        <div class="form-group">
+            <div>
+                <label class="lead text-muted">
+                    Enter the dataset name, type, target column index and select the dataset files .
+                </label>
+
+            </div>
+            <label class="lead mr-3 my-label">
+                Dataset name
+            </label>
+            <input type="text" placeholder="New dataset" autofocus="autofocus" class="form-control new_exp_input_name"
+                id="ds_name" style="margin-top: 10px;margin-bottom: 10px;">
+
+            <br>
+            <label class="lead mr-3 my-label">
+                Type
+            </label>
+            <select class="form-control form-control-sm mr-2 d-inline-block" id="dropDownMenu">
+                <option value="all" disabled="disabled">
+                    Type
+                </option>
+
+                <option value="Classification" selected>
+                    Classification
+                </option>
+
+            </select>
+            <br>
+            <label class="lead mr-3 my-label">
+                Target column index
+            </label>
+            <input value="-1" min="-1" type="number" placeholder="Column index" autofocus="autofocus"
+                class="form-control new_ds_target_index" id="ds_target_index" style="margin-bottom: 10px;">
+            <span class="badge tag-func tooltip">
+                <span class="tooltiptextHPT">
+                    Defines the target column that will be predicted. -1 is the default value and is the last column
+                </span>
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </span>
+
+            <label for="myFileUpload" class="file-upload-container">
+                <span>Drag and drop .xlsx or .csv files here, or click to select files</span>
+                <input type="file" id="myFileUpload" class="file-upload-input" accept=".xlsx,.csv" multiple>
+            </label>
+            <div id="file-info"></div>
+
+            <div class="card-body" id="files_platform" style="margin-top: 10px;">
+                <label class="" id="files_cnt">
+                    0 files selected:
+                    <a class='cursor' onclick="clearAllFiles()">
+                        clear all
+                    </a>
+                </label>
+            </div>
+        </div>
+
+    </div>
+
+    <input type="submit" class="btn btn-submit" value="Upload" onclick="submit()">
+
+</body>
+
+</html>

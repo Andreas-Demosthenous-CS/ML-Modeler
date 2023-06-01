@@ -1,0 +1,168 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
+    <script src="Script/tableToList.js" defer></script>
+
+    <!-- dependencies for icons used-->
+    <script src="https://kit.fontawesome.com/5fd83b36d7.js" crossorigin="anonymous"></script>
+
+    <!-- dependencies for icons used-->
+    <!-- <script src="Script/font_awesome.js" crossorigin="anonymous" defer></script> -->
+
+    <!-- script for this page -->
+    <script src="Script/index_page.js" defer></script>
+
+    <script src="Script/objects/Experiment.js" defer></script>
+    <script src="Script/objects/Dataset.js" defer></script>
+    <script src="Script/objects/Subset.js" defer></script>
+    <script src="Script/objects/Model.js" defer></script>
+    <script src="Script/objects/CorrelationModel.js" defer></script>
+    <script src="Script/objects/KBestModel.js" defer></script>
+    <script src="Script/objects/Configuration.js" defer></script>
+
+
+
+    <link rel="stylesheet" href="Style/style.css">
+
+    <!-- bootstrap for the popup menu for each experiment component -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+
+</head>
+
+<body>
+    <div id="popup-container">
+        <div id="popup-content">
+
+        </div>
+    </div>
+    <!-- Nav element to navigate to either new experiment/Current -->
+
+    <!-- logo picture of the page -->
+    <div href="/ML-Website/index.html">
+        <img class="logo cursor ml-100" src="images/logo.png">
+
+    </div>
+
+    <nav class="ml-100">
+        <a href="/ML-Website/index.html" class="btn-nav btn-nav-right">
+            <i class="fa-solid fa-flask"></i>
+            My Experiments
+        </a>
+
+        <a href="/ML-Website/experiment.html" class="btn-nav btn-nav-mid">
+            <i class="fa fa-plus"></i>
+            New Experiment
+        </a>
+        <a href="/ML-Website/upload.html" class="btn-nav btn-nav-mid">
+            <i class="fa fa-upload"></i>
+            Upload Dataset
+        </a>
+        <a href="/ML-Website/resources.html" class="btn-nav btn-nav-left">
+            <i class="fa fa-folder-open"></i>
+            My Resources
+        </a>
+        <img id="loading" class="loadingimg" src="images/loading.gif" />
+
+    </nav>
+
+
+    <div class="exp_container">
+
+        <span class="cnt_stat">
+            <span class="exp_cnt terminated_cnt" id="terminated_cnt">
+                0
+            </span>
+            Terminated&nbsp</span>
+
+        <span class="cnt_stat">
+            <span class="exp_cnt drafts_cnt" id="drafts_cnt">
+                0
+            </span>
+            Drafts&nbsp&nbsp</span>
+
+        <span class="cnt_stat">
+            <span class="exp_cnt queued_cnt" id="queued_cnt">
+                0
+            </span>
+            Queued&nbsp</span>
+
+        <span class="cnt_stat">
+            <span class="exp_cnt running_cnt" id="running_cnt">
+                0
+            </span>
+            Running&nbsp</span>
+
+        <span class="cnt_stat">
+            <span class="exp_cnt completed_cnt" id="completed_cnt">
+                0
+            </span>
+            Completed&nbsp</span>
+
+        <h4 class="text-secondary">
+            My Experiments
+        </h4>
+
+        <!-- Container for experiments table-->
+        <div id="exp_table_div" class = "">
+            <table id="exp_table" class="table-striped table-bordered">
+
+                <!-- Head of the experiments table -->
+                <thead id="exp_table_head">
+                    <tr>
+                        <th class="cursor t_item_left" value="id" sorted='1'>
+                            <i class="fa-solid fa-caret-up"></i>
+                            id
+                        </th>
+                        <th class="cursor t_item_center" value="name" sorted='1'>
+                            <i class="fa-solid fa-caret-up"></i>
+                            Name
+                        </th>
+                        <th class="cursor t_item_center" value="dataset_Obj.name" sorted='1'>
+                            <i class="fa-solid fa-caret-up"></i>
+                            Dataset
+                        </th>
+
+                        <th class="cursor t_item_center" value="type" sorted='1'>
+                            <i class="fa-solid fa-caret-up"></i>
+                            Type
+                        </th>
+
+                        <th class="cursor t_item_center" value="date" sorted='1'>
+                            <i class="fa-solid fa-caret-up"></i>
+                            Date
+                        </th>
+                        <th class="cursor t_item_center" value="duration" sorted='1'>
+                            <i class="fa-solid fa-caret-up"></i>
+                            Duration
+                        </th>
+                        <th class="cursor t_item_center" value="memUsage" sorted='1'>
+                            <i class="fa-solid fa-caret-up"></i>
+                            Memory Usage
+                        </th>
+                        <th class="cursor t_item_center" value="cpuUsage" sorted='1'>
+                            <i class="fa-solid fa-caret-up"></i>
+                            CPU Usage
+                        </th>
+                        <th class="cursor t_item_right" value="status" sorted='1'>
+                            <i class="fa-solid fa-caret-up"></i>
+                            State
+                        </th>
+                        <th width="10px">
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody id="experiments_panel">
+                    <!-- tbody of the table will be dynamically loaded with js after retrieval of the experiments from the db -->
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

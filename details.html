@@ -1,0 +1,75 @@
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="Style/style.css">
+
+  <script src="https://kit.fontawesome.com/5fd83b36d7.js" crossorigin="anonymous" defer></script>
+
+  <script src="Script/details_page.js" defer></script>
+
+  <script src="Script/objects/Experiment.js" defer></script>
+  <script src="Script/objects/Dataset.js" defer></script>
+  <script src="Script/objects/Subset.js" defer></script>
+  <script src="Script/objects/Model.js" defer></script>
+  <script src="Script/objects/CorrelationModel.js" defer></script>
+  <script src="Script/objects/KBestModel.js" defer></script>
+  <script src="Script/objects/Configuration.js" defer></script>
+
+  <script src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js" defer></script>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+
+  <!-- xlsx.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.core.min.js" defer></script>
+
+
+
+</head>
+
+<body>
+  <div id="popup-container">
+    <div id="popup-content">
+
+    </div>
+</div>
+<!-- Nav element to navigate to either new experiment/Current -->
+
+<!-- logo picture of the page -->
+<div href="/ML-Website/index.html">
+    <img class="logo cursor ml-100" src="images/logo.png">
+
+</div>
+
+<nav class="ml-100">
+    <a href="/ML-Website/index.html" class="btn-nav btn-nav-right">
+        <i class="fa-solid fa-flask"></i>
+        My Experiments
+    </a>
+
+    <a href="/ML-Website/experiment.html" class="btn-nav btn-nav-mid">
+        <i class="fa fa-plus"></i>
+        New Experiment
+    </a>
+    <a href="/ML-Website/upload.html" class="btn-nav btn-nav-mid">
+      <i class="fa fa-upload"></i>
+      Upload Dataset
+  </a>
+  <a href="/ML-Website/resources.html" class="btn-nav btn-nav-left">
+      <i class="fa fa-folder-open"></i>
+      My Resources
+  </a>
+    <img id="loading" class="loadingimg" src="images/loading.gif" />
+
+</nav>
+
+  <div id="exp_container">
+    <!-- dynamically loaded content -->
+  </div>
+
+
+</body>
+
+</html>

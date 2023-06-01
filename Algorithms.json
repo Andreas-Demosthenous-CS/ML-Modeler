@@ -1,0 +1,609 @@
+[{
+  "_id": {
+    "$oid": "63eb724118becd13307b2b3f"
+  },
+  "name": "Random Forest Classifier",
+  "name_abr": "RFC",
+  "hyper_parameters": [
+    {
+      "name": "n_estimators",
+      "type": "num_range",
+      "start": 10,
+      "stop": 1000,
+      "incr": 10,
+      "description": "The number of decision trees in the forest.",
+      "slider_incr": 1,
+      "default_value": 100,
+      "selected_value": 100,
+      "selected_start": 200,
+      "selected_stop": 500,
+      "selected_incr": 10
+    },
+    {
+      "name": "criterion",
+      "type": "class_range",
+      "values": [
+        "gini",
+        "entropy"
+      ],
+      "description": "The function to measure the quality of a split.",
+      "default_value": "gini",
+      "selected_value": "gini",
+      "selected_value_range": [
+        "gini",
+        "entropy"
+      ]
+    },
+    {
+      "name": "max_depth",
+      "type": "num_range",
+      "start": 5,
+      "stop": 30,
+      "incr": 5,
+      "description": "The maximum depth of each decision tree in the forest. A smaller value can prevent overfitting, but too small a value can lead to underfitting.",
+      "slider_incr": 1,
+      "default_value": "None",
+      "selected_value": "None",
+      "selected_start": 5,
+      "selected_stop": 30,
+      "selected_incr": 5
+    },
+    {
+      "name": "min_samples_split",
+      "type": "num_range",
+      "start": 2,
+      "stop": 10,
+      "incr": 1,
+      "description": "The minimum number of samples required to split an internal node. A smaller value can result in a more complex model, while a larger value can lead to underfitting.",
+      "slider_incr": 1,
+      "default_value": 2,
+      "selected_value": 2,
+      "selected_start": 2,
+      "selected_stop": 10,
+      "selected_incr": 1
+    },
+    {
+      "name": "min_samples_leaf",
+      "type": "num_range",
+      "start": 1,
+      "stop": 5,
+      "incr": 1,
+      "description": "The minimum number of samples required to be at a leaf node. A smaller value can result in a more complex model, while a larger value can lead to underfitting.",
+      "slider_incr": 1,
+      "default_value": 1,
+      "selected_value": 1,
+      "selected_start": 1,
+      "selected_stop": 5,
+      "selected_incr": 1
+    },
+    {
+      "name": "max_features",
+      "type": "num_range",
+      "start": 0.1,
+      "stop": 1,
+      "incr": 0.1,
+      "description": "The maximum number of features to consider when looking for the best split. A smaller value can reduce overfitting, while a larger value can lead to a more complex model.",
+      "slider_incr": 0.1,
+      "default_value": "auto",
+      "selected_value": "auto",
+      "selected_start": 0.1,
+      "selected_stop": 1,
+      "selected_incr": 0.1
+    },
+    {
+      "name": "bootstrap",
+      "type": "boolean",
+      "values": [
+        "true",
+        "false"
+      ],
+      "description": "Whether or not to bootstrap the samples used for each decision tree. Setting this to True can help to reduce variance, while setting it to False can result in a more stable model.",
+      "default_value": "true",
+      "selected_value": "true",
+      "selected_value_range": [
+        "true",
+        "false"
+      ]
+    },
+    {
+      "name": "oob_score",
+      "type": "boolean",
+      "values": [
+        "true",
+        "false"
+      ],
+      "description": "Whether to use out-of-bag samples to estimate the generalization accuracy.",
+      "default_value": "false",
+      "selected_value": "false",
+      "selected_value_range": [
+        "true",
+        "false"
+      ]
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "641600d44a5fac677a37bc29"
+  },
+  "name": "Extreme Gradient Boost Classifier",
+  "name_abr": "XGBC",
+  "hyper_parameters": [
+    {
+      "name": "n_estimators",
+      "type": "num_range",
+      "start": 10,
+      "stop": 1000,
+      "incr": 10,
+      "description": "The number of trees in the ensemble.",
+      "slider_incr": 1,
+      "default_value": 100,
+      "selected_value": 100,
+      "selected_start": 100,
+      "selected_stop": 1000,
+      "selected_incr": 10
+    },
+    {
+      "name": "learning_rate",
+      "type": "num_range",
+      "start": 0.01,
+      "stop": 0.3,
+      "incr": 0.01,
+      "description": "Learning rate shrinks the contribution of each tree by a factor of learning_rate. A lower learning rate will require more trees to be added to the ensemble, but the model will generalize better.",
+      "slider_incr": 0.01,
+      "default_value": 0.1,
+      "selected_value": 0.1,
+      "selected_start": 0.01,
+      "selected_stop": 0.3,
+      "selected_incr": 0.01
+    },
+    {
+      "name": "max_depth",
+      "type": "num_range",
+      "start": 3,
+      "stop": 10,
+      "incr": 1,
+      "description": " Maximum depth of a tree. Increasing this value makes the model more complex and can result in overfitting.",
+      "slider_incr": 1,
+      "default_value": 6,
+      "selected_value": 6,
+      "selected_start": 3,
+      "selected_stop": 10,
+      "selected_incr": 1
+    },
+    {
+      "name": "subsample",
+      "type": "num_range",
+      "start": 0.5,
+      "stop": 1,
+      "incr": 0.1,
+      "description": "The fraction of training instances to use for each tree. Lower values can prevent overfitting, but higher values can increase variance.",
+      "slider_incr": 0.1,
+      "default_value": 1,
+      "selected_value": 1,
+      "selected_start": 0.5,
+      "selected_stop": 1,
+      "selected_incr": 0.1
+    },
+    {
+      "name": "colsample_bytree",
+      "type": "num_range",
+      "start": 0.5,
+      "stop": 1,
+      "incr": 0.1,
+      "description": "The fraction of training instances to use for each tree. Lower values can prevent overfitting, but higher values can increase variance.",
+      "slider_incr": 0.1,
+      "default_value": 1,
+      "selected_value": 1,
+      "selected_start": 0.5,
+      "selected_stop": 1,
+      "selected_incr": 0.1
+    },
+    {
+      "name": "booster",
+      "type": "class_range",
+      "values": [
+        "gbtree",
+        "gblinear"
+      ],
+      "description": "The type of booster to use. Can be either 'gbtree' for tree-based models or 'gblinear' for linear models.",
+      "default_value": "gbtree",
+      "selected_value": "gbtree",
+      "selected_value_range": [
+        "gbtree",
+        "gblinear"
+      ]
+    },
+    {
+      "name": "gamma",
+      "type": "num_range",
+      "start": 0,
+      "stop": 10,
+      "incr": 1,
+      "description": "Minimum loss reduction required to make a further partition on a leaf node of the tree. Increasing this value can make the algorithm more conservative.",
+      "slider_incr": 1,
+      "default_value": 0,
+      "selected_value": 0,
+      "selected_start": 0,
+      "selected_stop": 10,
+      "selected_incr": 1
+    },
+    {
+      "name": "min_child_weight",
+      "type": "num_range",
+      "start": 1,
+      "stop": 10,
+      "incr": 1,
+      "description": "Minimum sum of instance weight (hessian) needed in a child. Increasing this value can make the algorithm more conservative.",
+      "slider_incr": 1,
+      "default_value": 1,
+      "selected_value": 1,
+      "selected_start": 1,
+      "selected_stop": 10,
+      "selected_incr": 1
+    },
+    {
+      "name": "reg_alpha",
+      "type": "num_range",
+      "start": 0,
+      "stop": 10,
+      "incr": 1,
+      "description": "L1 regularization term on weights. Increasing this value can make the algorithm more conservative.",
+      "slider_incr": 1,
+      "default_value": 0,
+      "selected_value": 0,
+      "selected_start": 0,
+      "selected_stop": 10,
+      "selected_incr": 1
+    },
+    {
+      "name": "reg_lambda",
+      "type": "num_range",
+      "start": 0,
+      "stop": 10,
+      "incr": 1,
+      "description": "L2 regularization term on weights. Increasing this value can make the algorithm more conservative.",
+      "slider_incr": 1,
+      "default_value": 1,
+      "selected_value": 1,
+      "selected_start": 0,
+      "selected_stop": 10,
+      "selected_incr": 1
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "6439b2ccc9fe00233b8da438"
+  },
+  "name": "Decision Tree Classifier",
+  "name_abr": "DTC",
+  "hyper_parameters": [
+    {
+      "name": "criterion",
+      "type": "class_range",
+      "values": [
+        "gini",
+        "entropy"
+      ],
+      "description": "The function to measure the quality of a split.",
+      "default_value": "gini",
+      "selected_value": "gini",
+      "selected_value_range": [
+        "gini",
+        "entropy"
+      ]
+    },
+    {
+      "name": "splitter",
+      "type": "class_range",
+      "values": [
+        "best",
+        "random"
+      ],
+      "description": "The strategy used to choose the split at each node.",
+      "default_value": "best",
+      "selected_value": "best",
+      "selected_value_range": [
+        "best",
+        "random"
+      ]
+    },
+    {
+      "name": "max_depth",
+      "type": "num_range",
+      "start": 5,
+      "stop": 30,
+      "incr": 5,
+      "description": "The maximum depth of the decision tree. A smaller value can prevent overfitting, but too small a value can lead to underfitting.",
+      "slider_incr": 1,
+      "default_value": "None",
+      "selected_value": "None",
+      "selected_start": 5,
+      "selected_stop": 30,
+      "selected_incr": 5
+    },
+    {
+      "name": "max_features",
+      "type": "num_range",
+      "start": 0.1,
+      "stop": 1,
+      "incr": 0.1,
+      "description": "The maximum number of features to consider when looking for the best split. A smaller value can reduce overfitting, while a larger value can lead to a more complex model.",
+      "slider_incr": 0.1,
+      "default_value": "None",
+      "selected_value": "None",
+      "selected_start": 0.1,
+      "selected_stop": 1,
+      "selected_incr": 0.1
+    },
+    {
+      "name": "min_impurity_decrease",
+      "type": "num_range",
+      "start": 0,
+      "stop": 0.5,
+      "incr": 0.01,
+      "description": "A node will be split if this split induces a decrease of the impurity greater than or equal to this value.",
+      "slider_incr": 0.01,
+      "default_value": 0,
+      "selected_value": 0,
+      "selected_start": 0,
+      "selected_stop": 0.5,
+      "selected_incr": 0.01
+    },
+    {
+      "name": "max_leaf_nodes",
+      "type": "num_range",
+      "start": 2,
+      "stop": 50,
+      "incr": 1,
+      "description": "The maximum number of leaf nodes in the decision tree. A smaller value can prevent overfitting, but too small a value can lead to underfitting.",
+      "slider_incr": 1,
+      "default_value": "None",
+      "selected_value": "None",
+      "selected_start": 2,
+      "selected_stop": 50,
+      "selected_incr": 1
+    },
+    {
+      "name": "ccp_alpha",
+      "type": "num_range",
+      "start": 0,
+      "stop": 0.5,
+      "incr": 0.01,
+      "description": "Complexity parameter used for Minimal Cost-Complexity Pruning. The subtree with the largest cost complexity that is smaller than ccp_alpha will be chosen.",
+      "slider_incr": 0.01,
+      "default_value": 0,
+      "selected_value": 0,
+      "selected_start": 0,
+      "selected_stop": 0.5,
+      "selected_incr": 0.01
+    },
+    {
+      "name": "min_samples_split",
+      "type": "num_range",
+      "start": 2,
+      "stop": 10,
+      "incr": 1,
+      "description": "The minimum number of samples required to split an internal node. A smaller value can result in a more complex model, while a larger value can lead to underfitting.",
+      "slider_incr": 1,
+      "default_value": 2,
+      "selected_value": 2,
+      "selected_start": 2,
+      "selected_stop": 10,
+      "selected_incr": 1
+    },
+    {
+      "name": "min_samples_leaf",
+      "type": "num_range",
+      "start": 1,
+      "stop": 5,
+      "incr": 1,
+      "description": "The minimum number of samples required to be at a leaf node. A smaller value can result in a more complex model, while a larger value can lead to underfitting.",
+      "slider_incr": 1,
+      "default_value": 1,
+      "selected_value": 1,
+      "selected_start": 1,
+      "selected_stop": 5,
+      "selected_incr": 1
+    },
+    {
+      "name": "random_state",
+      "type": "num_range",
+      "start": 0,
+      "stop": 100,
+      "incr": 1,
+      "description": "The random seed used to generate the decision tree.",
+      "slider_incr": 1,
+      "default_value": "None",
+      "selected_value": "None",
+      "selected_start": 0,
+      "selected_stop": 100,
+      "selected_incr": 1
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "643a98f8fb5c7e49e2fd7e31"
+  },
+  "name": "K-Neighbors Classifier",
+  "name_abr": "KNN",
+  "hyper_parameters": [
+    {
+      "name": "n_neighbors",
+      "type": "num_range",
+      "start": 1,
+      "stop": 100,
+      "incr": 1,
+      "description": "The number of neighbors to include in the majority of the voting process.",
+      "slider_incr": 1,
+      "default_value": 5,
+      "selected_value": 5,
+      "selected_start": 1,
+      "selected_stop": 100,
+      "selected_incr": 1
+    },
+    {
+      "name": "weights",
+      "type": "class_range",
+      "values": [
+        "uniform",
+        "distance"
+      ],
+      "description": "The weight function used in prediction.",
+      "default_value": "uniform",
+      "selected_value": "uniform",
+      "selected_value_range": [
+        "uniform",
+        "distance"
+      ]
+    },
+    {
+      "name": "algorithm",
+      "type": "class_range",
+      "values": [
+        "auto",
+        "ball_tree",
+        "kd_tree",
+        "brute"
+      ],
+      "description": "The algorithm used to compute the nearest neighbors.",
+      "default_value": "auto",
+      "selected_value": "auto",
+      "selected_value_range": [
+        "auto",
+        "ball_tree",
+        "kd_tree",
+        "brute"
+      ]
+    },
+    {
+      "name": "leaf_size",
+      "type": "num_range",
+      "start": 1,
+      "stop": 100,
+      "incr": 1,
+      "description": "The leaf size of the KD tree or Ball tree. This can affect the speed and accuracy of the algorithm.",
+      "slider_incr": 1,
+      "default_value": 30,
+      "selected_value": 30,
+      "selected_start": 1,
+      "selected_stop": 100,
+      "selected_incr": 1
+    },
+    {
+      "name": "p",
+      "type": "num_range",
+      "start": 1,
+      "stop": 10,
+      "incr": 1,
+      "description": "The power parameter for the Minkowski metric. When p=1, this is equivalent to using the Manhattan distance metric. When p=2, this is equivalent to using the Euclidean distance metric.",
+      "slider_incr": 1,
+      "default_value": 2,
+      "selected_value": 2,
+      "selected_start": 1,
+      "selected_stop": 10,
+      "selected_incr": 1
+    },
+    {
+      "name": "metric",
+      "type": "class_range",
+      "values": [
+        "euclidean",
+        "manhattan",
+        "minkowski",
+        "chebyshev",
+        "mahalanobis"
+      ],
+      "description": "The distance metric used to compute distances between instances.",
+      "default_value": "minkowski",
+      "selected_value": "minkowski",
+      "selected_value_range": [
+        "euclidean",
+        "manhattan",
+        "minkowski",
+        "chebyshev",
+        "mahalanobis"
+      ]
+    },
+    {
+      "name": "n_jobs",
+      "type": "num_range",
+      "start": -1,
+      "stop": 16,
+      "incr": 1,
+      "description": "The number of parallel jobs to run for neighbors search. Set to -1 to use all available processors",
+      "slider_incr": 1,
+      "default_value": "None",
+      "selected_value": "None",
+      "selected_start": -1,
+      "selected_stop": 16,
+      "selected_incr": 1
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "643aa1fffb5c7e49e2fd7e32"
+  },
+  "name": "Linear Discriminant Analysis",
+  "name_abr": "LDA",
+  "hyper_parameters": [
+    {
+      "name": "solver",
+      "type": "class_range",
+      "values": [
+        "svd",
+        "lsqr",
+        "eigen"
+      ],
+      "description": "The solver to use for computing the shrinkage parameter.",
+      "default_value": "svd",
+      "selected_value": "svd",
+      "selected_value_range": [
+        "svd",
+        "lsqr",
+        "eigen"
+      ]
+    },
+    {
+      "name": "shrinkage",
+      "type": "num_range",
+      "start": 0,
+      "stop": 1,
+      "incr": 0.1,
+      "description": "The shrinkage parameter to use. A value of 0 means no shrinkage, while a value of 1 means complete shrinkage.",
+      "slider_incr": 0.1,
+      "default_value": "None",
+      "selected_value": "None",
+      "selected_start": 0,
+      "selected_stop": 1,
+      "selected_incr": 0.1
+    },
+    {
+      "name": "n_components",
+      "type": "num_range",
+      "start": 1,
+      "stop": 10,
+      "incr": 1,
+      "description": "The number of components to keep. If None, all components are kept.",
+      "slider_incr": 1,
+      "default_value": "None",
+      "selected_value": "None",
+      "selected_start": 1,
+      "selected_stop": 10,
+      "selected_incr": 1
+    },
+    {
+      "name": "tol",
+      "type": "num_range",
+      "start": 0.000001,
+      "stop": 0.1,
+      "incr": 0.000001,
+      "description": "controls the convergence of the algorithm during training. Specifically, it specifies the tolerance for stopping criteria of the solver. The solver tries to find the optimal solution to the problem, and the tol parameter specifies the threshold for the maximum change in the coefficients during the optimization process.",
+      "slider_incr": 0.000001,
+      "default_value": 0.0001,
+      "selected_value": 0.0001,
+      "selected_start": 0.000001,
+      "selected_stop": 0.1,
+      "selected_incr": 0.000001
+    }
+  ]
+}]
